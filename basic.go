@@ -41,7 +41,7 @@ func newBoltdb(filepath string) (*boltdb, error) {
 
 	// Open the my.db data file in your current directory.
 	// It will be created if it doesn't exist.
-	db, err := bolt.Open("my.db", 0600, &bolt.Options{Timeout: 2 * time.Second})
+	db, err := bolt.Open(filepath, 0600, &bolt.Options{Timeout: 2 * time.Second})
 	if err != nil {
 		// probably already open by another process.
 		return nil, fmt.Errorf("error opening boltdb,"+
