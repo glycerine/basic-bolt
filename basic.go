@@ -48,16 +48,6 @@ func newBoltdb(filepath string) (*boltdb, error) {
 			" in use by other process? error detail: '%v'", err)
 	}
 
-	// write (and read if desired)
-	err = db.Update(func(tx *bolt.Tx) error {
-		b, err := tx.CreateBucketIfNotExists(chk)
-		if err != nil {
-			return fmt.Errorf("create bucket: %s", err)
-		}
-		err = b.Put(snap, []byte(""))
-		return err
-	})
-
 	if err != nil {
 		return nil, err
 	}
